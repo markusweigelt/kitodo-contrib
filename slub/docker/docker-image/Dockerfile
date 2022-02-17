@@ -16,7 +16,6 @@ ENV KITODO_DB_PASSWORD=kitodo
 ENV KITODO_ES_HOST=localhost
 
 COPY docker-entrypoint.sh /
-ENTRYPOINT ["/docker-entrypoint.sh"]
 
 RUN apt-get update && apt-get install -y \
 	net-tools \
@@ -45,4 +44,4 @@ RUN	unzip /tmp/kitodo/${KITODO_CONFIG_MODULES_NAME}.zip -x ${KITODO_CONFIG_MODUL
 	
 EXPOSE 8080
 
-CMD ["catalina.sh", "run"]
+CMD ["/docker-entrypoint.sh", "catalina.sh", "run"]
